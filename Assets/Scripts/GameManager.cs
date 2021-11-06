@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool isPlayerDead;
     public bool isLevelComplete;
 
     public const int numOfLevels = 5;
@@ -18,19 +17,22 @@ public class GameManager : MonoBehaviour
 
     public string GameCompleteScene;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // don't destroy game manager on load
         DontDestroyOnLoad(gameObject);
+    }
 
-        isPlayerDead = false;
+    // Start is called before the first frame update
+    void Start()
+    {
+        FlagHolder.isPlayerAlive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isPlayerDead)
+        if(!FlagHolder.isPlayerAlive)
         {
             GameOver();
         }
