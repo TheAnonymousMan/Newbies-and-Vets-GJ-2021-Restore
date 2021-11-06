@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject player;
-    //public float radius;
-    //public float radiusSpeed;
-    //public float rotationSpeed;
-
-    //private Transform center;
-    //private Vector3 desiredPos;
-
     private Vector3 mousePosition;
     private Vector3 diff;
     private float rotZ;
     private Vector3 screenBounds;
     private int playerHealth;
+    private bool isAlive;
+    private float startBulletTimer;
+    private float currentBulletTimer;
 
+    public GameObject player;
+    public GameObject muzzle;
+    public GameObject bullet;
     public float playerSpeed;
+    public float bulletInterval;
 
     // Start is called before the first frame update
     void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,Camera.main.transform.position.z));
-        //playerHealth = 100;
+        playerHealth = 100;
+        isAlive = true;
+        startBulletTimer = Time.time;
     }
 
     // Function that rotates the player on their axis based on the position of the mouse
@@ -92,16 +93,46 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Function that checks if the player has perished
+    void PlayerDeath()
+    {
+        if(playerHealth <= 0)
+        {
+            isAlive = false;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        // Rotate the player
-        RotatePlayer();
+        if(isAlive)
+        {
+            // Rotate the player
+            RotatePlayer();
 
-        // Move the player
-        MovePlayer();
+            // Move the player
+            MovePlayer();
 
-        // Prevent the player from moving out-of-bounds
-        ClampPlayer();
+            // Prevent the player from moving out-of-bounds
+            ClampPlayer();
+        }
+
+        if(Input.GetMouseButton(0))
+        {
+            currentBulletTimer = Time.time;
+
+            if(currentBulletTimer - startBulletTimer >= bulletInterval)
+            {
+                GameObject bulletTransform = Instantiate(bullet,muzzle.transform.position,Quaternion.identity);
+
+                Vector3 bulletDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - muzzle.transform.position;
+                bulletTransform.GetComponent<BulletController>().Setup(bulletDir);
+
+                startBulletTimer = currentBulletTimer;
+            }
+        }
+
+        // Check if the player has perished
+        PlayerDeath();
     }
 }
