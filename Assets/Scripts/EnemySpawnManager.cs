@@ -35,9 +35,6 @@ public class EnemySpawnManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        Debug.Log("Delta Time: " + Time.deltaTime);
-        Debug.Log("Timer: " + timer);
-
         if (timer >= TimeBetweenSpawn
         && numberEnemies <= maxEnemies
         && Counters.enemiesOnBoard <= Counters.maxEnemiesOnBoard)

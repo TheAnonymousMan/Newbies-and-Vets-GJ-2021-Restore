@@ -4,6 +4,8 @@ public static class Flags
     public static bool isPlayerAlive = true;
 
     public static bool isStageClear = false;
+
+    public static bool isPaused = false;
 }
 
 // Storing the level names for easy access

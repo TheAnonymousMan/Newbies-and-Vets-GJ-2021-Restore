@@ -14,4 +14,11 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene(Levels.menu);
     }
+
+    public void ResumeGame(GameObject pauseMenu)
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+        Flags.isPaused = false;
+    }
 }
