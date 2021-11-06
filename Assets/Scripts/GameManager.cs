@@ -6,17 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public bool isLevelComplete;
-
-    public const int numOfLevels = 5;
-
-    public string[] levels;
-
-    public string MenuScene;
-    public string GameOverScene;
-
-    public string GameCompleteScene;
-
     void Awake()
     {
         // don't destroy game manager on load
@@ -26,18 +15,18 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        FlagHolder.isPlayerAlive = true;
+        Flags.isPlayerAlive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!FlagHolder.isPlayerAlive)
+        if (!Flags.isPlayerAlive)
         {
             GameOver();
         }
 
-        if(isLevelComplete)
+        if (Flags.isStageClear)
         {
             LoadNextLevel();
         }
@@ -45,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
-        SceneManager.LoadScene(GameOverScene);
+        SceneManager.LoadScene(Levels.over);
     }
 
     void LoadNextLevel()
@@ -53,7 +42,13 @@ public class GameManager : MonoBehaviour
         Scene currentScene;
         currentScene = SceneManager.GetActiveScene();
 
-        if(currentScene.buildIndex != numOfLevels)
+        if (currentScene.buildIndex + 1 != Levels.numOfLevels)
+        {
             SceneManager.LoadScene(currentScene.buildIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(Levels.complete);
+        }
     }
 }
