@@ -42,6 +42,7 @@ public class EnemySpawnManager : MonoBehaviour
             timer = 0.0f;
             Instantiate(enemyType, EnemySpawner.transform.position, Quaternion.identity);
             numberEnemies += 1;
+            Counters.enemiesOnBoard += 1;
         }
     }
 }

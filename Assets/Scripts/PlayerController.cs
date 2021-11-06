@@ -18,13 +18,14 @@ public class PlayerController : MonoBehaviour
     public GameObject muzzle;
     public GameObject bullet;
     public float playerSpeed;
+    public float playerRotationSpeed;
     public float bulletInterval;
 
     // Start is called before the first frame update
     void Start()
     {
 
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,Camera.main.transform.position.z));
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         playerHealth = 100;
         isAlive = true;
         startBulletTimer = Time.time;
@@ -37,11 +38,14 @@ public class PlayerController : MonoBehaviour
         diff.Normalize();
 
         // Calculate rotation
-        rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg - 90;
+
+        Quaternion targetRotation = Quaternion.Euler(0, 0, rotZ);
 
         // Apply to object
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * playerRotationSpeed);
     }
+        
 
     // Function that moves the player based on user input
     void MovePlayer()
@@ -98,7 +102,7 @@ public class PlayerController : MonoBehaviour
     // Function that checks if the player has perished
     void PlayerDeath()
     {
-        if(playerHealth <= 0)
+        if (playerHealth <= 0)
         {
             isAlive = false;
         }
@@ -107,7 +111,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isAlive)
+        if (isAlive)
         {
             // Rotate the player
             RotatePlayer();
@@ -119,15 +123,15 @@ public class PlayerController : MonoBehaviour
             ClampPlayer();
         }
 
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             currentBulletTimer = Time.time;
 
-            if(currentBulletTimer - startBulletTimer >= bulletInterval)
+            if (currentBulletTimer - startBulletTimer >= bulletInterval)
             {
-                GameObject bulletTransform = Instantiate(bullet,muzzle.transform.position,Quaternion.identity);
+                GameObject bulletTransform = Instantiate(bullet, muzzle.transform.position, Quaternion.identity);
 
-                Vector3 bulletDir = Camera.main.ScreenToWorldPoint(Input.mousePosition) - muzzle.transform.position;
+                Vector3 bulletDir = muzzle.transform.up;
                 bulletTransform.GetComponent<BulletController>().Setup(bulletDir);
 
                 startBulletTimer = currentBulletTimer;
