@@ -9,4 +9,9 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene(Levels.stage[0]);
     }
+
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene(Levels.menu);
+    }
 }
