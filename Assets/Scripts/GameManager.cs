@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject pauseMenu;
+
     void Awake()
     {
         // don't destroy game manager on load
@@ -30,6 +33,12 @@ public class GameManager : MonoBehaviour
         {
             LoadNextLevel();
         }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log("Escape Pressed");
+            HandlePause();
+        }
     }
 
     void GameOver()
@@ -49,6 +58,22 @@ public class GameManager : MonoBehaviour
         else
         {
             SceneManager.LoadScene(Levels.complete);
+        }
+    }
+
+    void HandlePause()
+    {
+        if (!Flags.isPaused)
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+            Flags.isPaused = true;
+        }
+        else
+        {
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+            Flags.isPaused = false;
         }
     }
 }

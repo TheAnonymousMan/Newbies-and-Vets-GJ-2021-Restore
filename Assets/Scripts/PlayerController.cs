@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private float startBulletTimer;
     private float currentBulletTimer;
 
+
     public GameObject player;
     public GameObject muzzle;
     public GameObject bullet;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,Camera.main.transform.position.z));
         playerHealth = 100;
         isAlive = true;
@@ -35,61 +37,61 @@ public class PlayerController : MonoBehaviour
         diff.Normalize();
 
         // Calculate rotation
-        rotZ = Mathf.Atan2(diff.y,diff.x) * Mathf.Rad2Deg;
+        rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
 
         // Apply to object
-        transform.rotation = Quaternion.Euler(0f,0f,rotZ);
+        transform.rotation = Quaternion.Euler(0f, 0f, rotZ);
     }
 
     // Function that moves the player based on user input
     void MovePlayer()
     {
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             // The player moves up
-            transform.position = transform.position + new Vector3(0,playerSpeed * Time.deltaTime,0);
+            transform.position = transform.position + new Vector3(0, playerSpeed * Time.deltaTime, 0);
         }
 
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             // The player moves to the left
-            transform.position = transform.position - new Vector3(playerSpeed * Time.deltaTime,0,0);
+            transform.position = transform.position - new Vector3(playerSpeed * Time.deltaTime, 0, 0);
         }
 
-        if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             // The player moves down
-            transform.position = transform.position - new Vector3(0,playerSpeed * Time.deltaTime,0);
+            transform.position = transform.position - new Vector3(0, playerSpeed * Time.deltaTime, 0);
         }
 
-        if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             // The player moves to the right
-            transform.position = transform.position + new Vector3(playerSpeed * Time.deltaTime,0,0);
+            transform.position = transform.position + new Vector3(playerSpeed * Time.deltaTime, 0, 0);
         }
     }
 
     // Function that prevents the player from going out-of-bounds
     void ClampPlayer()
     {
-        if(transform.position.x + (transform.localScale.x / 2) > screenBounds.x)
+        if (transform.position.x + (transform.localScale.x / 2) > screenBounds.x)
         {
-            transform.position = new Vector3(screenBounds.x - (transform.localScale.x / 2), transform.position.y,transform.position.z);
+            transform.position = new Vector3(screenBounds.x - (transform.localScale.x / 2), transform.position.y, transform.position.z);
         }
 
-        if(transform.position.x - (transform.localScale.x / 2) < -1 * screenBounds.x)
+        if (transform.position.x - (transform.localScale.x / 2) < -1 * screenBounds.x)
         {
-            transform.position = new Vector3(-1 * screenBounds.x + (transform.localScale.x / 2), transform.position.y,transform.position.z);
+            transform.position = new Vector3(-1 * screenBounds.x + (transform.localScale.x / 2), transform.position.y, transform.position.z);
         }
 
-        if(transform.position.y + (transform.localScale.y / 2) > screenBounds.y)
+        if (transform.position.y + (transform.localScale.y / 2) > screenBounds.y)
         {
-            transform.position = new Vector3(transform.position.x,screenBounds.y - (transform.localScale.y / 2),transform.position.z);
+            transform.position = new Vector3(transform.position.x, screenBounds.y - (transform.localScale.y / 2), transform.position.z);
         }
 
-        if(transform.position.y - (transform.localScale.y / 2) < -1 * screenBounds.y)
+        if (transform.position.y - (transform.localScale.y / 2) < -1 * screenBounds.y)
         {
-            transform.position = new Vector3(transform.position.x,-1 * screenBounds.y + (transform.localScale.y / 2), transform.position.z);
+            transform.position = new Vector3(transform.position.x, -1 * screenBounds.y + (transform.localScale.y / 2), transform.position.z);
         }
     }
 
