@@ -12,7 +12,7 @@ public class BulletController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width,Screen.height,Camera.main.transform.position.z));
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
     }
 
     public void Setup(Vector3 bulletDir)
@@ -23,26 +23,26 @@ public class BulletController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.x < -1 * screenBounds.x)
+        if (transform.position.x < -1 * screenBounds.x)
         {
             Destroy(gameObject);
         }
 
-        if(transform.position.x > screenBounds.x)
+        if (transform.position.x > screenBounds.x)
         {
             Destroy(gameObject);
         }
 
-        if(transform.position.y < -1 * screenBounds.y)
+        if (transform.position.y < -1 * screenBounds.y)
         {
             Destroy(gameObject);
         }
 
-        if(transform.position.y > screenBounds.y)
+        if (transform.position.y > screenBounds.y)
         {
             Destroy(gameObject);
         }
 
-        transform.position += new Vector3(bulletDir.x * bulletSpeed * Time.deltaTime,bulletDir.y * bulletSpeed * Time.deltaTime,0);
+        transform.position += new Vector3(bulletDir.x * bulletSpeed * Time.deltaTime, bulletDir.y * bulletSpeed * Time.deltaTime, 0);
     }
 }
