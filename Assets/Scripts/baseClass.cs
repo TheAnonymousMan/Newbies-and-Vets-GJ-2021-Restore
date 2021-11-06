@@ -36,9 +36,8 @@ namespace classes
                 var bomber = new enemyC(30, Random.Range(1f, 2f));
                 Debug.Log(bomber.health);
                 
-                // cube.transform.localScale = new Vector3(c1.size, c1.size, c1.size);
                 GameObject temp = Instantiate(cube, new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f)), Quaternion.identity);
-                temp.gameObject.GetComponent<bomberAttack>().suicideAttack();
+                temp.transform.localScale = new Vector3(bomber.size, bomber.size, bomber.size);
             }
             
             if (Input.GetKeyDown("k"))
@@ -47,6 +46,16 @@ namespace classes
                 Debug.Log(hoverEnemy.health);
 
                 GameObject temp = Instantiate(circle, new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f)), Quaternion.identity);
+                temp.transform.localScale = new Vector3(hoverEnemy.size, hoverEnemy.size, hoverEnemy.size);
+            }
+
+            if (Input.GetKeyDown("f"))
+            {
+                var crazy = new enemyC(100, 10);
+                Debug.Log(crazy.health);
+
+                GameObject temp = Instantiate(circle, new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f)), Quaternion.identity);
+                temp.transform.localScale = new Vector3(crazy.size, crazy.size, crazy.size);
             }
         }
     }
