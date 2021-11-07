@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log(playerHealth);
     }
 
-    // Update is called once per frame
+    // Update is called once per frames
     void Update()
     {
         if (isAlive)
