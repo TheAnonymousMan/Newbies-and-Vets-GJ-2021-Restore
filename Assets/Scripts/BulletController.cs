@@ -6,6 +6,7 @@ public class BulletController : MonoBehaviour
 {
     private Vector3 screenBounds;
     private Vector3 bulletDir;
+    private int bulletDamage;
 
     public float bulletSpeed;
 
@@ -20,6 +21,7 @@ public class BulletController : MonoBehaviour
     public void Setup(Vector3 bulletDir)
     {
         this.bulletDir = bulletDir;
+        bulletDamage = 40;
     }
 
     // Update is called once per frame
@@ -50,9 +52,10 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Kamikaze")
         {
-            Destroy(collision.gameObject);
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<KamikazeController>().KamikazeHit(bulletDamage);
         }
     }
 }

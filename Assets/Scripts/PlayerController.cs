@@ -105,7 +105,14 @@ public class PlayerController : MonoBehaviour
         if (playerHealth <= 0)
         {
             isAlive = false;
+            Destroy(gameObject);
         }
+    }
+
+    public void PlayerHit(int damage)
+    {
+        playerHealth -= damage;
+        Debug.Log(playerHealth);
     }
 
     // Update is called once per frame
