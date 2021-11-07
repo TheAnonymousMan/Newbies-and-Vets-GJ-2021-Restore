@@ -30,7 +30,7 @@ public class Enemy3Controller : MonoBehaviour
         if (timebtwprimary <= 0)
         {
             var temp1 = Instantiate(bullet, first.position, first.rotation);
-            temp1.GetComponent<Rigidbody2D>().AddRelativeForce(first.transform.up * speed * 20f, ForceMode2D.Force);
+            temp1.GetComponent<Rigidbody2D>().AddRelativeForce(first.transform.up * speed * 30f, ForceMode2D.Force);
             // temp1.GetComponent<EnemyBullet>().damage = 4f;
             // temp1.GetComponent<EnemyBullet>()._tag = "Four";
 

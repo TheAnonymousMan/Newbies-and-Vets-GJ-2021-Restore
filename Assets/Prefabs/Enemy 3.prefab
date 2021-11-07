@@ -258,7 +258,7 @@ MonoBehaviour:
   first: {fileID: 1444589242844057922}
   second: {fileID: 5088797379030294431}
   third: {fileID: 2095367089}
-  rotationSpeed: 60
+  rotationSpeed: 180
   speed: 15
 --- !u!1 &5249315705656133487
 GameObject:

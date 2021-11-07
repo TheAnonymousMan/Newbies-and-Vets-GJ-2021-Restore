@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 738621480762278775}
   - component: {fileID: 738621480762278772}
   - component: {fileID: 1108866399627966398}
+  - component: {fileID: 1288514633150555042}
   m_Layer: 0
   m_Name: Enemy 2
   m_TagString: Untagged
@@ -101,6 +102,25 @@ CircleCollider2D:
   m_Offset: {x: -0.07500012, y: 0.08179784}
   serializedVersion: 2
   m_Radius: 5.9527807
+--- !u!114 &1288514633150555042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738621480762278773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a01ed598e5325d24ebf7438caef76140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bullet: {fileID: 1747287055532638222, guid: df891c877c0df47418e2d78e4eb4297d, type: 3}
+  speed: 8
+  bulletSpeed: 10
+  primaryfirerate: 0.5
+  stopdistance: 8
+  backdistance: 5
+  muzzle: {fileID: 3840901485685717343}
 --- !u!1 &8806981139078248781
 GameObject:
   m_ObjectHideFlags: 0

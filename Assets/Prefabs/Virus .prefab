@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 738621480762278775}
   - component: {fileID: 738621480762278772}
   - component: {fileID: 1108866399627966398}
+  - component: {fileID: 3434673785882426507}
   m_Layer: 0
   m_Name: 'Virus '
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: 873d329357dc62b48903402db97cd358, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -100,3 +101,15 @@ CircleCollider2D:
   m_Offset: {x: -0.593036, y: 0}
   serializedVersion: 2
   m_Radius: 5.9527807
+--- !u!114 &3434673785882426507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738621480762278773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81cec53aba067a244b3d248722d39fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
