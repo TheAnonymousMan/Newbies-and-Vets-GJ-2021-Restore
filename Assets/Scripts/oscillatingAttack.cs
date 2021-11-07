@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,15 +11,12 @@ public class oscillatingAttack : MonoBehaviour
     void Update()
     {
         // Horizontal Movement
-        // Debug.Log(transform.position);
-        // Debug.Log(count);
         if (count >= 0 && count <= 100 && change == false)
         {
             transform.position += new Vector3(speed * Time.deltaTime * 3, 0, 0);
             count++;
             if (count == 100)
             {
-                Debug.Log("changed");
                 change = true;
             }
         }

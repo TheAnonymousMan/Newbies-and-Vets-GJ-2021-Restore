@@ -5,8 +5,12 @@ using UnityEngine;
 public class bomberAttack : MonoBehaviour
 {
     private float speed = 1f;
-    public GameObject player;
-    
+    private GameObject player;
+    void Start(){
+
+        player = GameObject.FindWithTag("Player");
+    }
+
     void Update()
     {
         this.transform.position = Vector3.MoveTowards(transform.position, player.transform.position, (speed * Time.deltaTime));

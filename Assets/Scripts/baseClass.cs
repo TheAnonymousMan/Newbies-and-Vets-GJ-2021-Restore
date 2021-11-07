@@ -25,7 +25,8 @@ namespace classes
         //change 'name' later to represent something better
         public GameObject kamikaze;
         public GameObject oscillator;
-        public GameObject waitAndGo;
+        public GameObject randy;
+
         void Update()   
         {
             // The reason for the spawn will change
@@ -35,7 +36,7 @@ namespace classes
                 var bomber = new enemyC(30, Random.Range(1f, 2f));
                 // Debug.Log(bomber.health);
                 
-                GameObject temp = Instantiate(kamikaze, new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f)), Quaternion.identity);
+                GameObject temp = Instantiate(kamikaze, new Vector2(Random.Range(-10f, 10f), Random.Range(-5f, 5f)), Quaternion.identity);
                 temp.transform.localScale = new Vector3(bomber.size, bomber.size, bomber.size);
             }
             
@@ -44,16 +45,16 @@ namespace classes
                 var hoverEnemy = new enemyC(150, 1);
                 // Debug.Log(hoverEnemy.health);
 
-                GameObject temp = Instantiate(oscillator, new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f)), Quaternion.identity);
+                GameObject temp = Instantiate(oscillator, new Vector2(Random.Range(-10f, 10f), Random.Range(-5f, 5f)), Quaternion.identity);
                 temp.transform.localScale = new Vector3(hoverEnemy.size, hoverEnemy.size, hoverEnemy.size);
             }
 
             if (Input.GetKeyDown("f"))
             {
-                var crazy = new enemyC(100, 1);
+                var crazy = new enemyC(100, .5f);
                 // Debug.Log(crazy.health);
 
-                GameObject temp = Instantiate(waitAndGo, new Vector2(Random.Range(-5f, 5f), Random.Range(-5f, 5f)), Quaternion.identity);
+                GameObject temp = Instantiate(randy, new Vector2(Random.Range(-10f, 10f), Random.Range(-5f, 5f)), Quaternion.identity);
                 temp.transform.localScale = new Vector3(crazy.size, crazy.size, crazy.size);
             }
         }
