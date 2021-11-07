@@ -25,6 +25,7 @@ namespace classes
         //change 'name' later to represent something better
         public GameObject cube;
         public GameObject circle;
+
         void Start()
         {
         }

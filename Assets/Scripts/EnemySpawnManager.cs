@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawnManager : MonoBehaviour
 {
@@ -23,6 +25,8 @@ public class EnemySpawnManager : MonoBehaviour
     void Start()
     {
         timer = 0.0f;
+
+        Counters.maxEnemiesOnBoard = SceneManager.GetActiveScene().buildIndex * 5;
     }
 
     // Update is called once per frame
@@ -36,8 +40,8 @@ public class EnemySpawnManager : MonoBehaviour
         timer += Time.deltaTime;
 
         if (timer >= TimeBetweenSpawn
-        && numberEnemies <= maxEnemies
-        && Counters.enemiesOnBoard <= Counters.maxEnemiesOnBoard)
+            && numberEnemies <= maxEnemies
+            && Counters.enemiesOnBoard <= Counters.maxEnemiesOnBoard)
         {
             timer = 0.0f;
             Instantiate(enemyType, EnemySpawner.transform.position, Quaternion.identity);
