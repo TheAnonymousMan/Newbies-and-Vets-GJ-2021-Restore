@@ -9,6 +9,8 @@ public class BulletController : MonoBehaviour
 
     public float bulletSpeed;
 
+    [SerializeField] private string target;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,5 +46,13 @@ public class BulletController : MonoBehaviour
         }
 
         transform.position += new Vector3(bulletDir.x * bulletSpeed * Time.deltaTime, bulletDir.y * bulletSpeed * Time.deltaTime, 0);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
