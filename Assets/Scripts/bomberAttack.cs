@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class bomberAttack : MonoBehaviour
 {
-    private float speed = 1f;
+    private float speed = 8f;
     private GameObject player;
     void Start(){
 
