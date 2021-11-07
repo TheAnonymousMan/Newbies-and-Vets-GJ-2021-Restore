@@ -18,14 +18,24 @@ public class EnemySpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject EnemySpawner;
 
+    [SerializeField]
+    private GameObject[] SpawnLocations;
+
     private float timer;
     private int numberEnemies;
+
+    int prevSpawnLocation;
+    int spawnLocation;
 
     // Start is called before the first frame update
     void Start()
     {
         timer = 0.0f;
 
+        prevSpawnLocation = 0;
+        spawnLocation = 0;
+
+        // update this formula
         Counters.maxEnemiesOnBoard = SceneManager.GetActiveScene().buildIndex * 5;
     }
 
@@ -41,12 +51,19 @@ public class EnemySpawnManager : MonoBehaviour
 
         if (timer >= TimeBetweenSpawn
             && numberEnemies <= maxEnemies
-            && Counters.enemiesOnBoard <= Counters.maxEnemiesOnBoard)
+            && Counters.enemiesOnBoard < Counters.maxEnemiesOnBoard)
         {
-            timer = 0.0f;
-            Instantiate(enemyType, EnemySpawner.transform.position, Quaternion.identity);
-            numberEnemies += 1;
-            Counters.enemiesOnBoard += 1;
+            spawnLocation = Random.Range(0, SpawnLocations.Length);
+
+            if (spawnLocation != prevSpawnLocation)
+            {
+                timer = 0.0f;
+                Instantiate(enemyType, SpawnLocations[spawnLocation].transform.position, Quaternion.identity);
+                prevSpawnLocation = spawnLocation;
+
+                numberEnemies += 1;
+                Counters.enemiesOnBoard += 1;
+            }
         }
     }
 }

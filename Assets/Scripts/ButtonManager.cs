@@ -21,4 +21,9 @@ public class ButtonManager : MonoBehaviour
         Time.timeScale = 1;
         Flags.isPaused = false;
     }
+
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

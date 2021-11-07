@@ -9,10 +9,19 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject pauseMenu;
 
+    [SerializeField]
+    private GameObject deathMenu;
+
+    [SerializeField]
+    private GameObject player;
+
     void Awake()
     {
         // don't destroy game manager on load
         DontDestroyOnLoad(gameObject);
+
+        Levels.numOfLevels = Levels.stage.Length;
+        Counters.lives = 3;
     }
 
     // Start is called before the first frame update
@@ -26,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         if (!Flags.isPlayerAlive)
         {
-            GameOver();
+            PlayerDeath();
         }
 
         if (Flags.isStageClear)
@@ -34,10 +43,25 @@ public class GameManager : MonoBehaviour
             LoadNextLevel();
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && Flags.isPlayerAlive)
         {
             Debug.Log("Escape Pressed");
             HandlePause();
+        }
+    }
+
+    void PlayerDeath()
+    {
+        Counters.lives -= 1;
+
+        if (Counters.lives < 0)
+        {
+            GameOver();
+        }
+        else
+        {
+            Destroy(player);
+            deathMenu.SetActive(true);
         }
     }
 

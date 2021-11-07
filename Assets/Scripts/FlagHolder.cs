@@ -29,4 +29,6 @@ public static class Counters
     public static int maxEnemiesOnBoard = 5;
 
     public static int enemiesOnBoard = 0;
+
+    public static int lives = 3;
 }
