@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         // Apply to object
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * playerRotationSpeed);
     }
-        
+
 
     // Function that moves the player based on user input
     void MovePlayer()
@@ -147,5 +147,32 @@ public class PlayerController : MonoBehaviour
 
         // Check if the player has perished
         PlayerDeath();
+    }
+
+    public void PlayerHealthGain(int healthGain)
+    {
+        if (playerHealth < 100)
+        {
+            playerHealth += healthGain;
+            if (playerHealth >= 100)
+            {
+                playerHealth = 100;
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy 2 Bullet")
+        {
+            PlayerHit(5);
+            Destroy(collision.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Enemy 3 Bullet")
+        {
+            PlayerHit(15);
+            Destroy(collision.gameObject);
+        }
     }
 }

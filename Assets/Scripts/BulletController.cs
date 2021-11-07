@@ -57,5 +57,11 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject);
             collision.gameObject.GetComponent<KamikazeController>().KamikazeHit(bulletDamage);
         }
+
+        if (collision.gameObject.tag == "Enemy 2")
+        {
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<Enemy2Controller>().Enemy2Health(bulletDamage);
+        }
     }
 }

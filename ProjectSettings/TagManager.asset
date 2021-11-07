@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Kamikaze
   - Bullet
+  - Enemy 3 Bullet
+  - Enemy 2
+  - Enemy 2 Bullet
   layers:
   - Default
   - TransparentFX

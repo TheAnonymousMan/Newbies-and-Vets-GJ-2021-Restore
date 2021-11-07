@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 238b4ae96b7799044820618daf0ebd88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 1747287055532638222, guid: df891c877c0df47418e2d78e4eb4297d, type: 3}
+  bullet: {fileID: 1747287055532638222, guid: 4180e2a01fb2cf948918151d52eaee1b, type: 3}
   primaryfirerate: 0.5
   first: {fileID: 1444589242844057922}
   second: {fileID: 5088797379030294431}

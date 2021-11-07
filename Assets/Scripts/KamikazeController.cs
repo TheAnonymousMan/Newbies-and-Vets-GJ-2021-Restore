@@ -32,13 +32,14 @@ public class KamikazeController : MonoBehaviour
         {
             Destroy(gameObject);
             Counters.enemiesOnBoard -= 1;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().PlayerHealthGain(2);
         }
     }
 
     public void KamikazeHit(int bulletDamage)
     {
         health -= bulletDamage;
-        Debug.Log(health);
+        //Debug.Log(health);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
