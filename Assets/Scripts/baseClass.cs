@@ -26,7 +26,6 @@ namespace classes
         public GameObject kamikaze;
         public GameObject oscillator;
         public GameObject waitAndGo;
-
         void Update()   
         {
             // The reason for the spawn will change
