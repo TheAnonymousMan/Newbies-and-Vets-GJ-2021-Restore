@@ -7,8 +7,8 @@ public class KamikazeController : MonoBehaviour
     private int health;
     private int damage;
     private Rigidbody2D rb;
-
-    [SerializeField] private GameObject target;
+    private Transform player;
+    //[SerializeField] private GameObject target;
     [SerializeField] private float kamikazeSpeed;
 
     // Start is called before the first frame update
@@ -17,12 +17,13 @@ public class KamikazeController : MonoBehaviour
         health = 100;
         damage = 20;
         rb = this.GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 targetDistance = target.transform.position - transform.position;
+        Vector3 targetDistance = player.position - transform.position;
         targetDistance.Normalize();
 
         rb.MovePosition((Vector3)transform.position + (targetDistance * kamikazeSpeed * Time.deltaTime));
@@ -30,6 +31,7 @@ public class KamikazeController : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
+            Counters.enemiesOnBoard -= 1;
         }
     }
 
@@ -45,6 +47,7 @@ public class KamikazeController : MonoBehaviour
         {
             Destroy(gameObject);
             collision.gameObject.GetComponent<PlayerController>().PlayerHit(damage);
+            Counters.enemiesOnBoard -= 1;
         }
     }
 }

@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
         if (playerHealth <= 0)
         {
             isAlive = false;
-            Destroy(gameObject);
+            Flags.isPlayerAlive = false;
         }
     }
 
@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
             if (currentBulletTimer - startBulletTimer >= bulletInterval)
             {
-                GameObject bulletTransform = Instantiate(bullet, muzzle.transform.position, Quaternion.identity);
+                GameObject bulletTransform = Instantiate(bullet, muzzle.transform.position, transform.rotation);
 
                 Vector3 bulletDir = muzzle.transform.up;
                 bulletTransform.GetComponent<BulletController>().Setup(bulletDir);

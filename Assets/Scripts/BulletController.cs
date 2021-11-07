@@ -10,7 +10,7 @@ public class BulletController : MonoBehaviour
 
     public float bulletSpeed;
 
-    [SerializeField] private string target;
+    //[SerializeField] private string target;
 
     // Start is called before the first frame update
     void Start()
