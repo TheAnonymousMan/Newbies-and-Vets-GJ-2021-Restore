@@ -10,7 +10,7 @@ public class Enemy4Controller : MonoBehaviour
     private Vector3 startpoint;
     public float speed;
     public float numberofBullets;
-
+    public float health;
     public GameObject bullet;
     // Start is called before the first frame update
     void Start()
@@ -48,5 +48,15 @@ public class Enemy4Controller : MonoBehaviour
         {
             timebtwFirerate -= Time.deltaTime;
         }
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+            Counters.enemiesOnBoard -= 1;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().PlayerHealthGain(10);
+        }
+    }
+    public void Enemy4Health(int bulletDamage)
+    {
+        health -= bulletDamage;
     }
 }

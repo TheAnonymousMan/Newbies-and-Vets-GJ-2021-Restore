@@ -63,5 +63,15 @@ public class BulletController : MonoBehaviour
             Destroy(gameObject);
             collision.gameObject.GetComponent<Enemy2Controller>().Enemy2Health(bulletDamage);
         }
+        if (collision.gameObject.tag == "Enemy 4")
+        {
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<Enemy4Controller>().Enemy4Health(bulletDamage);
+        }
+        if (collision.gameObject.tag == "Boss")
+        {
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<Enemy3Controller>().BossHealth(bulletDamage);
+        }
     }
 }

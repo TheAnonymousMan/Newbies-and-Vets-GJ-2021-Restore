@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy3Controller : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class Enemy3Controller : MonoBehaviour
     
     public float primaryfirerate;
     private float timebtwprimary;
+
+    public Image bossHealth;
     
     public Transform first;
     public Transform second;
     public Transform third;
-
+    public float health;
     public float rotationSpeed;
     
     public float speed;
@@ -50,5 +53,24 @@ public class Enemy3Controller : MonoBehaviour
         {
             timebtwprimary -= Time.deltaTime;
         }
+        if (health <= 0)
+        {
+            //change the scene
+            Flags.isStageClear = true;
+
+        }
     }
+    public void BossHealth(int bulletDamage)
+    {
+        health -= bulletDamage;
+        float temp = ((float)health) / 1000;
+       
+        if (temp >= 1.0f)
+        {
+            bossHealth.fillAmount = 1.0f;
+        }
+        float amount = 1.0f - temp;
+        bossHealth.fillAmount = amount;
+    }
+    
 }
