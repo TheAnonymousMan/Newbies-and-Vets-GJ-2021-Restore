@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private float startBulletTimer;
     private float currentBulletTimer;
 
-
+    public Image healthBar;
     public GameObject player;
     public GameObject muzzle;
     public GameObject bullet;
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour
     {
 
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        playerHealth = 100;
+        playerHealth = 50;
         isAlive = true;
         startBulletTimer = Time.time;
     }
@@ -112,7 +114,8 @@ public class PlayerController : MonoBehaviour
     public void PlayerHit(int damage)
     {
         playerHealth -= damage;
-        Debug.Log(playerHealth);
+        float temp =  (float)playerHealth / 100;
+        healthBar.fillAmount = temp;
     }
 
     // Update is called once per frames
@@ -147,6 +150,8 @@ public class PlayerController : MonoBehaviour
 
         // Check if the player has perished
         PlayerDeath();
+        
+        
     }
 
     public void PlayerHealthGain(int healthGain)
@@ -158,6 +163,9 @@ public class PlayerController : MonoBehaviour
             {
                 playerHealth = 100;
             }
+           
+            float temp =  (float)playerHealth / 100;
+            healthBar.fillAmount = temp;
         }
     }
 
@@ -169,9 +177,14 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
 
-        if (collision.gameObject.tag == "Enemy 3 Bullet")
+        if (collision.gameObject.tag == "Enemy 4 Bullet")
         {
-            PlayerHit(15);
+            PlayerHit(7);
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.tag == "Boss Bullet")
+        {
+            PlayerHit(10);
             Destroy(collision.gameObject);
         }
     }
